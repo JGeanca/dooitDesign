@@ -1,6 +1,6 @@
 import argparse
 from importlib.metadata import version
-from .controller.tui import Dooit
+from .controller.event_listener import EventListener
 
 from .Tests import Test
 
@@ -16,4 +16,4 @@ def main():
     elif args.test:
         Test.run()
     else:
-        Dooit().run()
+        EventListener().run()
