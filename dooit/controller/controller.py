@@ -1,10 +1,9 @@
-from dooit.api.manager import Manager
+from dooit.api.manager import manager
 from dooit.utils.watcher import Watcher
 from dooit.ui.widgets import WorkspaceTree, TodoTree, StatusBar 
 
 
 class Controller():
-  manager = Manager()
   
   def create_widgets(self):
     self.navbar = WorkspaceTree()
@@ -17,17 +16,17 @@ class Controller():
     self.navbar.toggle_highlight()
 
   def has_changed(self):
-    return (not self.manager.is_locked() and self.watcher.has_modified())
+    return (not manager.is_locked() and self.watcher.has_modified())
 
   def refresh_model_data(self):
-    return self.manager.refresh_data()
+    return manager.refresh_data()
 
   def refresh_view_data(self):
     return self.navbar._refresh_data()
 
   def refresh_data(self):
-    if not self.manager.is_locked() and self.watcher.has_modified():
-      if (self.manager.refresh_data()):
+    if not manager.is_locked() and self.watcher.has_modified():
+      if (manager.refresh_data()):
         return self.navbar._refresh_data()
   
   def generate_widgets(self):
@@ -36,7 +35,7 @@ class Controller():
     yield self.bar
     
   def commit(self):
-    self.manager.commit()
+    manager.commit()
 
   def update_table(self, event):
     return self.todos.update_table(event.item)
