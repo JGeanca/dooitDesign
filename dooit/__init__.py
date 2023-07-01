@@ -1,6 +1,6 @@
 import argparse
 from importlib.metadata import version
-from .ui.tui import Dooit
+from .controller.tui import Dooit
 
 from .Tests import Test
 
